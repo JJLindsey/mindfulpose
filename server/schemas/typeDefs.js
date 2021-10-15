@@ -55,5 +55,5 @@ type Mutation {
 }
 
 `
-
+//we can change the wording of order to subscription if we decide to change that up!--ryan
 module.exports = typeDefs;
