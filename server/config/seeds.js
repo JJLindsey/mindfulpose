@@ -17,12 +17,12 @@ db.once('open', async () => {
 
     const meditations = await Meditations.insertMany([
         {
-            title: 'Yoga Nidra',
+            title: 'Yoga Nidra for the beginner',
             img: '',
             recording: '',
-            description: '',
+            description: 'This is a beginners guide to Yoga Nidra',
             datePosted: Date,
-            category: categories[0]._id
+            category: categories[1]._id
         }
     ]);
     console.log('You have seeded your meditations');
@@ -34,8 +34,6 @@ db.once('open', async () => {
         lastName: 'Blessing',
         email:'ryan@test.com',
         password: 'password',
-        {
-            meditations: []
-        }
+        subscription: true,
     })
 })

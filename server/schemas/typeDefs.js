@@ -26,7 +26,7 @@ type Checkout {
     session: ID
 }
 
-type Order {
+type Subscription {
         _id: ID
         purchaseDate: String
         meditation: [Meditation]
@@ -42,15 +42,15 @@ type Query {
     categories: [Category]
     meditations(category: ID, title: String): [Meditation]
     meditation(_id: ID!): Meditation
-    order(_id: ID!): Order
+    subscription(_id: ID!): Subscription
     checkout(Meditations: [ID]!): Checkout
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(firstNAme: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(meditations: [ID]!): Order
-    updateUser(firstNAme: String!, lastName: String, email: String, password: String): User
+    addSubscription(meditations: [ID]!): Subscription
+    updateUser(firstName: String!, lastName: String, email: String, password: String): User
     updateMeditation(_id: ID!, title: String): Meditation
 }
 

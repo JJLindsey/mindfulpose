@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Category, Order, Meditations } = require('../models');
+const { User, Category, Subscription, Meditations } = require('../models');
 const { signToken } = require('../utils/auth');
 
 //add a const for the users to be able to pay for there subscription. IE stripe
