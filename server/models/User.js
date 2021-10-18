@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
-const { Order } = require('./Order');
-const Meditations = require('./Meditations');
-
+const Subscription = require('./Subscription');
+//const Meditations = require('./Meditations');
 
 const userSchema = new Schema(
     {
-        firstNAme: {
+        firstName: {
             type: String,
             required: true,
             trim: true
@@ -25,9 +24,7 @@ const userSchema = new Schema(
             type: String,
             required: true
         },
-        orders: {
-            type: Schema.Types.Array
-        }
+        subscription: [Subscription.schema]
     });
 
     // the ability to save and update said password
