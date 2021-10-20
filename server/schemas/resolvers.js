@@ -68,6 +68,13 @@ const resolvers = {
 
             return { token, user};
         }, 
+        updateUser: async (parent, args, context) => {
+            if (context.user) {
+              return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+            }
+      
+            throw new AuthenticationError('Not logged in');
+        },
         login: async(parent, { email, password }) => {
             const user = await User.findOne({ email });
 
@@ -84,6 +91,18 @@ const resolvers = {
             const token = signToken(user);
 
             return { token, user };
+        },
+        addSubscription: async (parent, { meditations }, context) => {
+            
+            if(context.user) {
+                const subscription = new Subscription({ meditations });
+
+                await User.findByIdAndUpdate(context.user._id, { $push: { subscription: subscription } });
+
+                return subscription;
+            }
+
+            throw new AuthenticationError('Not logged in!');
         }
     }
 }
