@@ -46,6 +46,45 @@ const resolvers = {
             }
             return await Meditations.find(params).populate('category');
         },
+
+        //give the users subscription access to the meditation categories
+        subscription: async (parent, { _id }, context) => {
+            if(context.user) {
+                const user = await User.findById(context.user._id).populate({
+                    path: 'subscription.meditations',
+                    populate: 'category'
+                });
+
+                return user.subscription.id(_id);
+            }
+
+            throw new AuthenticationError('Not logged in!')
+        },
+    },
+    Mutation: {
+        addUser: async (parent, args) => {
+            const user =await User.create(args);
+            const token = signToken(user);
+
+            return { token, user};
+        }, 
+        login: async(parent, { email, password }) => {
+            const user = await User.findOne({ email });
+
+            if(!user) {
+                throw new AuthenticationError('incorrect Email!')
+            }
+
+            const correctPw = await user.isCorrectPassword(password);
+
+            if(!correctPw) {
+                throw new AuthenticationError('Invalid Password')
+            }
+
+            const token = signToken(user);
+
+            return { token, user };
+        }
     }
 }
 

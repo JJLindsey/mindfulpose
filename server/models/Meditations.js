@@ -33,6 +33,6 @@ const meditationSchema = new Schema({
     //add comments/likes definition
 })
 
-const Meditations = mongoose.model('Meditation', meditationSchema);
+const Meditations = mongoose.model('Meditations', meditationSchema);
 
 module.exports = Meditations;
