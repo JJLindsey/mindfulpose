@@ -29,7 +29,7 @@ type Checkout {
 type Subscription {
         _id: ID
         purchaseDate: String
-        meditation: [Meditation]
+        meditation: [Meditations]
     }
 
 type Auth {
@@ -40,18 +40,18 @@ type Auth {
 type Query {
     user: User
     categories: [Category]
-    meditations(category: ID, title: String): [Meditation]
-    meditation(_id: ID!): Meditation
+    meditations(category: ID, title: String): [Meditations]
+    meditation(_id: ID!): Meditations
     subscription(_id: ID!): Subscription
     checkout(Meditations: [ID]!): Checkout
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(firstNAme: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addSubscription(meditations: [ID]!): Subscription
     updateUser(firstName: String!, lastName: String, email: String, password: String): User
-    updateMeditation(_id: ID!, title: String): Meditation
+    updateMeditation(_id: ID!, title: String): Meditations
 }
 
 `
