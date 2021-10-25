@@ -22,8 +22,6 @@ type Category {
     name: String
 }
 
-
-
 type Subscription {
     _id: ID
     purchaseDate: String
