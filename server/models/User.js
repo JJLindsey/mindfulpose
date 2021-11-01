@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
-const Subscription = require('./Subscription');
+const{ Order } = require('./Order');
 //const Meditations = require('./Meditations');
 
 const userSchema = new Schema(
@@ -24,7 +24,9 @@ const userSchema = new Schema(
             type: String,
             required: true
         },
-        subscription: [Subscription.schema]
+        orders: {
+            type: Schema.Types.Array
+        }
     });
 
     // the ability to save and update said password
@@ -37,7 +39,7 @@ const userSchema = new Schema(
         next();
     })
 
-    //taking the password and compairing it to make sure that it is the correct password
+    //taking the password and comparing it to make sure that it is the correct password
     userSchema.methods.isCorrectPassword = async function (password) {
         return bcrypt.compare(password, this.password);
     };

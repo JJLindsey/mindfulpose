@@ -1,6 +1,6 @@
 const Category = require('./Category');
 const User = require('./User');
 const Meditations = require('./Meditations');
-const Subscription = require('./Subscription');
+const Order = require('./Order');
 
-module.exports = { Category, User, Meditations, Subscription};
+module.exports = { Category, User, Meditations, Order};

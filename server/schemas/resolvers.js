@@ -48,14 +48,14 @@ const resolvers = {
         },
 
         //give the users subscription access to the meditation categories
-        subscription: async (parent, { _id }, context) => {
+        subscription: async (parent, { user }, context) => {
             if(context.user) {
                 const user = await User.findById(context.user._id).populate({
                     path: 'subscription.meditations',
                     populate: 'category'
                 });
 
-                return user.subscription.id(_id);
+                return user.subscription.id(user);
             }
 
             throw new AuthenticationError('Not logged in!')
@@ -92,10 +92,10 @@ const resolvers = {
 
             return { token, user };
         },
-        addSubscription: async (parent, { meditations }, context) => {
+        addSubscription: async (_, { user }, context) => {
             
-            if(context.user) {
-                const subscription = new Subscription({ meditations });
+            if(context.meditations) {
+                const subscription = new Subscription({ user });
 
                 await User.findByIdAndUpdate(context.user._id, { $push: { subscription: subscription } });
 

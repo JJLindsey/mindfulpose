@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const subscriptionSchema = new Schema({
+const orderSchema = new Schema({
     purchaseDate: {
         type: Date,
         default: Date.now
@@ -16,6 +16,6 @@ const subscriptionSchema = new Schema({
     ]
 });
 
-const Subscription = mongoose.model('Subscription', subscriptionSchema);
+const Order = mongoose.model('Order', orderSchema);
 
-module.exports = Subscription
+module.exports = Order;
