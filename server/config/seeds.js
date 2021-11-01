@@ -33,7 +33,12 @@ db.once('open', async () => {
         firstName: 'Ryan',
         lastName: 'Blessing',
         email:'ryan@test.com',
-        password: 'password'
+        password: 'password',
+        orders: [
+            {
+                meditations: [Meditations[0]._id]
+            }
+        ]
     })
 
     console.log('users seeded')
