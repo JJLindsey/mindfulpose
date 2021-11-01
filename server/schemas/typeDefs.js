@@ -1,5 +1,6 @@
 const { gql } = require('apollo-server');
 
+
 const typeDefs = gql`
 
 type User {
@@ -22,7 +23,9 @@ type Category {
     name: String
 }
 
-type Subscription {
+
+type Order {
+
     _id: ID
     purchaseDate: String
     meditation: [Meditations]
@@ -38,13 +41,13 @@ type Query {
     categories: [Category]
     meditations(category: ID, title: String): [Meditations]
     meditation(_id: ID!): Meditations
-    subscription(_id: ID!): Subscription
+    order(_id: ID!): Order
 }
 
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addSubscription(meditations: [ID]!): Subscription
+    addOrder(meditations: [ID]!): Order
     updateUser(firstName: String!, lastName: String, email: String, password: String): User
 }
 
@@ -60,5 +63,5 @@ type Mutation {
 // add a deleteMeditation ability later on?
 // Add a updateUser? to mutation 
 
-//we can change the wording of order to subscription if we decide to change that up!--ryan
+
 module.exports = typeDefs;
