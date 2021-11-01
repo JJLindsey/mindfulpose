@@ -1,9 +1,10 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Category, Subscription, Meditations } = require('../models');
+const { User, Category, Order, Meditations } = require('../models');
 const { signToken } = require('../utils/auth');
 
 //add a const for the users to be able to pay for there subscription. IE stripe
 
+//i dont like git issues
 const resolvers = {
     Query: {
         // to find all the categories IE. mindfullness, yoga nidra, artful moments
@@ -15,11 +16,11 @@ const resolvers = {
         user: async(parent, args, context) => {
             if(context.user) {
                 const user = await User.findById(context.user._id).populate({
-                    path: 'subscription.meditations',
+                    path: 'order.meditations',
                     populate: 'category'
                 });
 
-                user.subscription.sort((a, b) => b.purchaseDate - a.purchaseDate);
+                user.order.sort((a, b) => b.purchaseDate - a.purchaseDate);
                 return user;
             }
 
@@ -48,14 +49,14 @@ const resolvers = {
         },
 
         //give the users subscription access to the meditation categories
-        subscription: async (parent, { user }, context) => {
+        order: async (parent, { user }, context) => {
             if(context.user) {
                 const user = await User.findById(context.user._id).populate({
-                    path: 'subscription.meditations',
+                    path: 'order.meditations',
                     populate: 'category'
                 });
 
-                return user.subscription.id(user);
+                return user.order.id(user);
             }
 
             throw new AuthenticationError('Not logged in!')
@@ -92,14 +93,14 @@ const resolvers = {
 
             return { token, user };
         },
-        addSubscription: async (_, { user }, context) => {
+        addOrder: async (_, { user }, context) => {
             
             if(context.meditations) {
-                const subscription = new Subscription({ user });
+                const order = new Order({ user });
 
-                await User.findByIdAndUpdate(context.user._id, { $push: { subscription: subscription } });
+                await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
-                return subscription;
+                return order;
             }
 
             throw new AuthenticationError('Not logged in!');
