@@ -33,7 +33,10 @@ db.once('open', async () => {
         firstName: 'Ryan',
         lastName: 'Blessing',
         email:'ryan@test.com',
-        password: 'password',
-        subscription: true,
+        password: 'password'
     })
+
+    console.log('users seeded')
+
+    process.exit();
 })
