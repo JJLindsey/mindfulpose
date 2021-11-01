@@ -23,7 +23,9 @@ type Category {
     name: String
 }
 
+
 type Order {
+
     _id: ID
     purchaseDate: String
     meditation: [Meditations]
