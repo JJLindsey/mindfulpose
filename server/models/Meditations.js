@@ -22,9 +22,6 @@ const meditationSchema = new Schema({
         type: String,
         require: true
     },
-    datePosted: {
-        type: Schema.Types.Date
-    },
     category: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
@@ -36,3 +33,7 @@ const meditationSchema = new Schema({
 const Meditations = mongoose.model('Meditations', meditationSchema);
 
 module.exports = Meditations;
+
+//datePosted: {
+//     type: Schema.Types.Date
+// },
