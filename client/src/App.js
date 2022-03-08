@@ -1,31 +1,30 @@
-import React from 'react'
 
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+// import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client'
+import { BrowserRouter , Routes, Route} from 'react-router-dom';
+import Home from './pages/Home';
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
+// const httpLink = createHttpLink({
+//   uri: '/graphql',
+// });
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-})
+// const client = new ApolloClient({
+//   link: authLink.concat(httpLink),
+//   cache: new InMemoryCache(),
+// })
 
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-    <Router>
-      <div>
-          <Nav />
-          <Switch>
+    // <ApolloProvider client={client}>
+      <BrowserRouter>
           
-          </Switch>
-          <Footer/>
-      </div>
-    </Router>
-  </ApolloProvider>
+            <Routes>
+              <Route path='/' exact element={<Home/>} />
+
+            </Routes>
+  
+      </BrowserRouter>
+  // </ApolloProvider>
   );
 }
 
