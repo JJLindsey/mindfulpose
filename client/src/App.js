@@ -3,6 +3,7 @@
 import { BrowserRouter , Routes, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 
 // const httpLink = createHttpLink({
 //   uri: '/graphql',
@@ -23,7 +24,7 @@ function App() {
               <Route path='/' exact element={<Home/>} />
 
             </Routes>
-  
+          <Footer/>
       </BrowserRouter>
   // </ApolloProvider>
   );
