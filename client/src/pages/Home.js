@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 function Home() {
     return (
         
-        <Container className="mindful-home fluid p-3 mx-auto" id='background-home'>
+        <Container className="fluid p-3 mx-auto" id='background-home'>
+            <div className="mindful-home"></div>
             <Form className="home-card bg-white">
                 <Form.Group className="mb-3" id="home-form" controlId="formBasicPassword">
                 <Form.Text className="text-center">
